@@ -1,0 +1,70 @@
+<section>
+	<div class="container" [ngClass]="activeSignUpForm?'right-panel-active':''" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#" (ngSubmit)="onSignUp()" [formGroup]="signUpform">
+				<h1 class="mb-2">Create Account</h1>
+				<!-- <div class="social-container">
+					<a href="#" class="social"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="social"><i class="fa fa-google-plus"></i></a>
+					<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+				</div>
+				<span>or use your email for registration</span> -->
+				<input type="text error-input" autocomplete="name" placeholder="Name" formControlName="name" required/>
+				<div class="error-message" *ngIf="signUpform.get('name').touched && signUpform.get('name').invalid">Name is a required field.</div>
+				<input type="email" autocomplete="email"  placeholder="Email" formControlName="email"/>
+				<div class="error-message" *ngIf="signUpform.get('email').touched && signUpform.get('email').hasError('required')">Email is a required field.</div>
+				<div class="error-message" *ngIf="signUpform.get('email').hasError('pattern') && !signUpform.get('email').hasError('required')">Please provide valid email address.</div>
+				<input type="text" autocomplete="mobile"  placeholder="Phone" formControlName="phone" />
+				<div class="error-message" *ngIf="signUpform.get('phone').touched && signUpform.get('phone').hasError('required')">Phone is a required field.</div>
+				<div class="error-message" *ngIf="signUpform.get('phone').hasError('pattern') && !signUpform.get('phone').hasError('required')">Phone number should be minimum 10</div>
+
+				<input type="date" placeholder="DOB" formControlName="dob"/>
+				<input type="password" autocomplete="current-password" placeholder="Password" formControlName="password"/>
+				<div class="error-message" *ngIf="signUpform.get('password').touched && signUpform.get('password').hasError('required')">Password is a required field.</div>
+				<div class="error-message" *ngIf="signUpform.get('password').hasError('pattern') && !signUpform.get('password').hasError('required')">Password should be minimum of 8 characters and mixer of uppercase, lowercase, numbers and special characters.</div>
+				<button type="submit" class="cursor-pointer mt-2" [style.opacity]="loader?0.5:1"><img style="margin-left: 0;" src="https://i.gifer.com/ZKZx.gif" *ngIf="loader" alt="loader" width="20px" height="20px"> Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form (ngSubmit)="onLogin()" [formGroup]="loginForm">
+				<h1 class="mb-2">Sign in</h1>
+				<!-- <div class="social-container">
+					<a href="#" class="social"><i class="fa fa-facebook"></i></a>
+					<a href="#" class="social"><i class="fa fa-google-plus"></i></a>
+					<a href="#" class="social"><i class="fa fa-linkedin"></i></a>
+				</div>
+				<span>or use your account</span> -->
+				<input formControlName="email" type="email" placeholder="Email" />
+				<div class="error-message" *ngIf="loginForm.get('email').touched && loginForm.get('email').hasError('required')">Email is a required field.</div>
+				<div class="error-message" *ngIf="loginForm.get('email').hasError('pattern') && !loginForm.get('email').hasError('required')">Please provide valid email address.</div>
+				<input formControlName="password" type="password" placeholder="Password" />
+				<div class="error-message" *ngIf="loginForm.get('password').touched && loginForm.get('password').invalid">Password is a required field.</div>
+				<!-- <a href="#">Forgot your password?</a> -->
+				<button [style.opacity]="loader?0.5:1" class="cursor-pointer"><img style="margin-left: 0;" src="https://i.gifer.com/ZKZx.gif" *ngIf="loader" alt="loader" width="20px" height="20px"> Sign In</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<img src="../../../../assets/fence logo.png" alt="fence" width="100px">
+					<h1>Welcome Back!</h1>
+					<p>To keep connected with us please login with your personal info</p>
+					<button class="ghost cursor-pointer" id="signIn" (click)="onToggleView()">Sign In</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<img src="../../../../assets/fence logo.png" alt="fence" width="100px">
+					<h1>Hello, Friend!</h1>
+					<p>Enter your personal details and start journey with us</p>
+					<button class="ghost cursor-pointer" id="signUp" (click)="onToggleView()"> Sign Up</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<footer>
+		<p>
+			Created with <i class="fa fa-heart"></i> by
+			<a target="_blank" href="https://github.com/itarungm">iTarunGM</a>
+		</p>
+	</footer>
+</section>
